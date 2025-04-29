@@ -4,10 +4,7 @@ const EventsSection = () => {
     return (
         <div className="bg-white p-8">
             {/* Header */}
-            <div className="relative flex">
-                <h2 className="text-xl font-bold mb-6">Our Events</h2>
-                <div className="w-[170vh] h-[2px] bg-black rounded-md ml-[10vh] mt-[15px]"></div>
-            </div>
+            <h2 className="text-xl font-bold mb-6">Our Events</h2>
 
             {/* Event Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
