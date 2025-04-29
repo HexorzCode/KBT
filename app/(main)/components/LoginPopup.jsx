@@ -16,7 +16,7 @@ const LoginPopup = ( {onClose} ) => {
                         <h2 className="text-white text-4xl font-bold mb-4">Lorem Ipsum</h2>
                         <h2 className="text-white text-4xl font-bold mb-4">Lorem Ipsum</h2>
                         <h2 className="text-white text-4xl font-bold mb-4">Lorem Ipsum’</h2>
-                        <h2 className="text-white text-4xl font-bold">Lorem Ipsum</h2>
+                        <h2 className="text-white text-4xl font-bold">Lorem Ipsu</h2>
                     </div>
                 </div>
 
