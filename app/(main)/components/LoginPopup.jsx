@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
+
 
 const LoginPopup = ( {onClose} ) => {
     return (
-        <div className="fixed inset-0 backdrop-blur-[2px] bg-opacity-50 flex justify-center items-center z-50">
-            <div className="flex w-full max-w-5xl min-h-[70vh] bg-white rounded-lg overflow-hidden shadow-lg border-2">
+        <div className="fixed inset-0  bg-opacity-40 backdrop-blur-[2px] transition-opacity duration-300 flex justify-center items-center z-50">
+            <div className="flex w-full max-w-5xl min-h-[70vh] bg-white rounded-lg overflow-hidden shadow-lg border-2 transform transition-all duration-500 ease-out opacity-0 scale-95 animate-fadeIn">
                 <div className="relative w-1/2 hidden md:block">
                     <img
                         src="/your-image.jpg"
@@ -19,7 +21,7 @@ const LoginPopup = ( {onClose} ) => {
                 </div>
 
                 <div className="w-full md:w-1/2 p-10 flex flex-col justify-center h-max">
-                    <button className="self-end text-xl mb-4" onClick={onClose}>✕</button>
+                    <button className="self-end text-xl mb-4 hover:cursor-pointer" onClick={onClose}>✕</button>
                     <h2 className="text-2xl font-bold mb-1">Buat Akun Baru</h2>
                     <p className="mb-4 text-gray-600">
                         Sudah memiliki Akun?{" "}

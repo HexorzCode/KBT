@@ -64,7 +64,7 @@ export default function Home() {
         <JoinSection />
         <EventsSection />
       </div>
-      {showLogin && <LoginPopup onClose={() => setShowLogin(false)} />}
+      {showLogin && <LoginPopup onClose={() => setShowLogin(false)}/>}
 
     </div>
     
