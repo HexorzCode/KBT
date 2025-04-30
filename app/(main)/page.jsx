@@ -4,10 +4,21 @@ import JoinSection from "./components/JoinSection";
 import EventsSection from "./components/EventSection";
 import MisiKami from "./components/Misi";
 import LoginPopup from "./components/LoginPopup";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    if (width < 1280 || height < 720) {
+      router.push('/405');
+    }
+  }, []);
 
   return (
     <div>
