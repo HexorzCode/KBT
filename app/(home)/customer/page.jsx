@@ -1,10 +1,10 @@
 "use client"
 import Image from "next/image";
 import Navbar from "../components/Navbar"; // Ensure correct path to Navbar
-import Router from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-    const router = Router
+    const router = useRouter()
     function kategori(){
         router.push("/kategori")
     }
