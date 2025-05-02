@@ -1,7 +1,13 @@
+"use client"
 import Image from "next/image";
 import Navbar from "../components/Navbar"; // Ensure correct path to Navbar
+import Router from "next/navigation";
 
 export default function Home() {
+    const router = Router
+    function kategori(){
+        router.push("/kategori")
+    }
     return (
         <div>
             {/* Hero Section */}
@@ -27,7 +33,7 @@ export default function Home() {
                 <div className="container mx-auto px-4">
                     <h2 className="text-2xl font-bold mb-8">Kategori Jasa</h2>
                     <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-                        <div className="bg-gray-200 shadow-md p-6 rounded-lg text-center">
+                        <div className="bg-gray-200 shadow-md p-6 rounded-lg text-center" onClick={kategori}>
                             <Image src="/placeholder.png" alt="Category 1" width={50} height={50} />
                             <h3 className="text-xl font-semibold mt-2">Graphic & Design</h3>
                         </div>
