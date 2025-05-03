@@ -13,8 +13,7 @@ export default function Home() {
                         <input
                             type="text"
                             placeholder="Cari Jasa"
-                            className="p-3 rounded-l-lg w-96 focus:outline-none"
-                        />
+                            className="p-3 rounded-l-lg w-96 focus:outline-none"/>
                         <button className="bg-blue-800 text-white p-3 rounded-r-lg">
                             Cari
                         </button>
