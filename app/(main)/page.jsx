@@ -8,17 +8,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const [showLogin, setShowLogin] = useState(false);
-  const router = useRouter();
 
-  useEffect(() => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    if (width < 1280 || height < 720) {
-      router.push('/405');
-    }
-  }, []);
 
   return (
     <div>
