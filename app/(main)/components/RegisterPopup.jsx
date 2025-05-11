@@ -27,10 +27,10 @@ const RegisterPopup = ({ onClose, onSwitchToLogin }) => { // <<<< Ensure onSwitc
                     <p className="mb-4 text-gray-600">
                         Sudah memiliki Akun?{" "}
                         <a
-                            className="text-black font-semibold hover:underline hover:cursor-pointer" // Changed from in-hover:cursor-pointer
+                            className="text-black font-semibold hover:underline hover:cursor-pointer"
                             onClick={() => {
-                                if (onClose) onClose(); // Close this modal
-                                if (onSwitchToLogin) onSwitchToLogin(); // Then trigger opening the login modal
+                                if (onClose) onClose();
+                                if (onSwitchToLogin) onSwitchToLogin();
                             }}
                         >
                             Sign In

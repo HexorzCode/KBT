@@ -9,7 +9,7 @@ const LoginPopup = ({ onClose, onSwitchToRegister }) => { // <<<< Ensure onSwitc
             <div className="flex w-full max-w-5xl min-h-[70vh] bg-white rounded-lg overflow-hidden shadow-lg border-2 transform transition-all duration-500 ease-out opacity-0 scale-95 animate-fadeIn">
                 <div className="relative w-1/2 hidden md:block">
                     <img
-                        src="/home3.png" // Or a different image for login
+                        src="home3.png" 
                         alt="background"
                         className="w-full h-full object-cover"
                     />
