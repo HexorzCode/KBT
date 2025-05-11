@@ -22,6 +22,15 @@ export default function Home() {
     setActiveModal('register'); 
   };
 
+  useEffect(() => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    if (width < 1280 || height < 720) {
+      router.push('/405');
+    }
+  }, []);
+  
   return (
     <div>
       <div
