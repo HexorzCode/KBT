@@ -3,15 +3,28 @@
 import JoinSection from "./components/JoinSection";
 import EventsSection from "./components/EventSection";
 import MisiKami from "./components/Misi";
-import LoginPopup from "./components/LoginPopup";
+import RegisterPopup from "./components/RegisterPopup"; // Renamed for clarity if it's indeed a popup
+import LoginPopup from "./components/LoginPopup";     // Renamed for clarity
 import React, { useState } from "react";
 
 export default function Home() {
-  const [showLogin, setShowLogin] = useState(false);
+  // Single state to manage which modal is active: 'login', 'register', or null
+  const [activeModal, setActiveModal] = useState(null);
+
+  const handleOpenLogin = () => setActiveModal('login');
+  const handleOpenRegister = () => setActiveModal('register');
+  const handleCloseModal = () => setActiveModal(null);
+
+  const handleSwitchToLogin = () => {
+    setActiveModal('login'); // Directly switch to login
+  };
+
+  const handleSwitchToRegister = () => {
+    setActiveModal('register'); // Directly switch to register
+  };
 
   return (
     <div>
-
       <div
         className="hero min-h-[91vh]"
         style={{
@@ -26,8 +39,12 @@ export default function Home() {
             <h1 className="mb-5 text-5xl font-bold">
               Temukan Jasa Berkualitas Untuk Membantumu
             </h1>
-            <button className="btn shadow-none m-2" onClick={() => setShowLogin(true)}>Cari Jasa</button>
-            <button className="btn shadow-none m-2">
+            {/* Updated onClick to open Login Modal */}
+            <button className="btn shadow-none m-2" onClick={handleOpenLogin}>
+              Cari Jasa
+            </button>
+            {/* Updated onClick to open Register Modal */}
+            <button className="btn shadow-none m-2" onClick={handleOpenRegister}>
               Daftar Sebagai Freelancer
             </button>
           </div>
@@ -59,14 +76,26 @@ export default function Home() {
       </div>
 
       <MisiKami />
-      
+
       <div>
         <JoinSection />
         <EventsSection />
       </div>
-      {showLogin && <LoginPopup onClose={() => setShowLogin(false)}/>}
 
+      {/* Render Modals based on activeModal state */}
+      {activeModal === 'register' && (
+        <RegisterPopup
+          onClose={handleCloseModal}
+          onSwitchToLogin={handleSwitchToLogin}
+        />
+      )}
+
+      {activeModal === 'login' && (
+        <LoginPopup
+          onClose={handleCloseModal}
+          onSwitchToRegister={handleSwitchToRegister}
+        />
+      )}
     </div>
-    
   );
 }
