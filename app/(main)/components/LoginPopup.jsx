@@ -1,8 +1,6 @@
 // components/LoginPopup.jsx
 "use client";
 import React from "react";
-
-// Assuming this is structured similarly to the LoginModal I provided earlier
 const LoginPopup = ({ onClose, onSwitchToRegister }) => { // <<<< Ensure onSwitchToRegister is a prop
     return (
         <div className="fixed inset-0 bg-opacity-40 backdrop-blur-[2px] transition-opacity duration-300 flex justify-center items-center z-50">
