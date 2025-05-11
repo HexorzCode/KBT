@@ -5,7 +5,7 @@ import EventsSection from "./components/EventSection";
 import MisiKami from "./components/Misi";
 import RegisterPopup from "./components/RegisterPopup"; // Renamed for clarity if it's indeed a popup
 import LoginPopup from "./components/LoginPopup";     // Renamed for clarity
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Home() {
   const [activeModal, setActiveModal] = useState(null);
@@ -30,7 +30,7 @@ export default function Home() {
       router.push('/405');
     }
   }, []);
-  
+
   return (
     <div>
       <div
