@@ -3,26 +3,9 @@
 import JoinSection from "./components/JoinSection";
 import EventsSection from "./components/EventSection";
 import MisiKami from "./components/Misi";
-import LoginPopup from "./components/LoginPopup";
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-
-export default function Home() {
-  const [showLogin, setShowLogin] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    if (width < 1280 || height < 720) {
-      router.push('/405');
-    }
-  }, []);
 
   return (
     <div>
-
       <div
         className="hero min-h-[91vh]"
         style={{
@@ -37,8 +20,12 @@ export default function Home() {
             <h1 className="mb-5 text-5xl font-bold">
               Temukan Jasa Berkualitas Untuk Membantumu
             </h1>
-            <button className="btn shadow-none m-2" onClick={() => setShowLogin(true)}>Cari Jasa</button>
-            <button className="btn shadow-none m-2">
+            {/* Updated onClick to open Login Modal */}
+            <button className="btn shadow-none m-2" onClick={handleOpenLogin}>
+              Cari Jasa
+            </button>
+            {/* Updated onClick to open Register Modal */}
+            <button className="btn shadow-none m-2" onClick={handleOpenRegister}>
               Daftar Sebagai Freelancer
             </button>
           </div>
@@ -70,14 +57,26 @@ export default function Home() {
       </div>
 
       <MisiKami />
-      
+
       <div>
         <JoinSection />
         <EventsSection />
       </div>
-      {showLogin && <LoginPopup onClose={() => setShowLogin(false)}/>}
 
+      {/* Render Modals based on activeModal state */}
+      {activeModal === 'register' && (
+        <RegisterPopup
+          onClose={handleCloseModal}
+          onSwitchToLogin={handleSwitchToLogin}
+        />
+      )}
+
+      {activeModal === 'login' && (
+        <LoginPopup
+          onClose={handleCloseModal}
+          onSwitchToRegister={handleSwitchToRegister}
+        />
+      )}
     </div>
-    
   );
 }

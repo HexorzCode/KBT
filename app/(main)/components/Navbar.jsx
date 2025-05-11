@@ -1,10 +1,25 @@
 'use client';
 
 import { useState } from 'react';
-import LoginPopup from './LoginPopup';
+// Corrected import statements:
+import RegisterPopup from './RegisterPopup'; // Import your Register modal component
+import LoginPopup from './LoginPopup';     // Import your Login modal component
 
 export default function Navbar() {
-    const [showLogin, setShowLogin] = useState(false);
+    const [activeModal, setActiveModal] = useState(null);
+
+    const handleOpenLogin = () => setActiveModal('login'); // Added for completeness if you need to open Login directly
+    const handleOpenRegister = () => setActiveModal('register');
+    const handleCloseModal = () => setActiveModal(null);
+
+    const handleSwitchToLogin = () => {
+        setActiveModal('login');
+    };
+
+    const handleSwitchToRegister = () => {
+        setActiveModal('register');
+    };
+
 
     return (
         <>
@@ -18,7 +33,7 @@ export default function Navbar() {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow" // DaisyUI recommends z-[1] for dropdowns
                         >
                             <li><a>Item 1</a></li>
                             <li>
@@ -39,7 +54,8 @@ export default function Navbar() {
                         <li><a>Home</a></li>
                         <li><a>About us</a></li>
                         <li><a>Become a Freelancer</a></li>
-                        <li><a></a></li>
+                        {/* You might want a Login link here as well */}
+                        {/* <li><a onClick={handleOpenLogin}>Login</a></li> */}
                         <li>
                             <details>
                                 <summary>Contact</summary>
@@ -55,13 +71,34 @@ export default function Navbar() {
                 <div className="navbar-end">
                     <button
                         className="btn bg-black text-white dark:bg-white dark:text-black"
-                        onClick={() => setShowLogin(true)}
+                        onClick={handleOpenRegister} // This will open the Register Modal
                     >
                         Join
                     </button>
+                    {/* Optionally, add a Login button if needed directly in navbar */}
+                    {/* <button
+                        className="btn btn-ghost ml-2"
+                        onClick={handleOpenLogin}
+                    >
+                        Login
+                    </button> */}
                 </div>
             </nav>
-            {showLogin && <LoginPopup onClose={() => setShowLogin(false)} />}
+
+            {/* Render Modals based on activeModal state */}
+            {activeModal === 'register' && (
+                <RegisterPopup
+                    onClose={handleCloseModal}
+                    onSwitchToLogin={handleSwitchToLogin}
+                />
+            )}
+
+            {activeModal === 'login' && (
+                <LoginPopup
+                    onClose={handleCloseModal}
+                    onSwitchToRegister={handleSwitchToRegister}
+                />
+            )}
         </>
     );
 }
