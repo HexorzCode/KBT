@@ -3,25 +3,6 @@
 import JoinSection from "./components/JoinSection";
 import EventsSection from "./components/EventSection";
 import MisiKami from "./components/Misi";
-import RegisterPopup from "./components/RegisterPopup"; // Renamed for clarity if it's indeed a popup
-import LoginPopup from "./components/LoginPopup";     // Renamed for clarity
-import React, { useState } from "react";
-
-export default function Home() {
-  // Single state to manage which modal is active: 'login', 'register', or null
-  const [activeModal, setActiveModal] = useState(null);
-
-  const handleOpenLogin = () => setActiveModal('login');
-  const handleOpenRegister = () => setActiveModal('register');
-  const handleCloseModal = () => setActiveModal(null);
-
-  const handleSwitchToLogin = () => {
-    setActiveModal('login'); // Directly switch to login
-  };
-
-  const handleSwitchToRegister = () => {
-    setActiveModal('register'); // Directly switch to register
-  };
 
   return (
     <div>
