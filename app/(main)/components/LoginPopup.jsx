@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 
 const LoginPopup = ( {onClose} ) => {
@@ -8,7 +9,7 @@ const LoginPopup = ( {onClose} ) => {
             <div className="flex w-full max-w-5xl min-h-[70vh] bg-white rounded-lg overflow-hidden shadow-lg border-2 transform transition-all duration-500 ease-out opacity-0 scale-95 animate-fadeIn">
                 <div className="relative w-1/2 hidden md:block">
                     <img
-                        src="/your-image.jpg"
+                        src="/home3.png"
                         alt="background"
                         className="w-full h-full object-cover"
                     />
@@ -31,7 +32,7 @@ const LoginPopup = ( {onClose} ) => {
                     </p>
 
                     <button className="w-full py-2 mb-3 border flex items-center justify-center gap-2 rounded-md hover:bg-gray-100">
-                        <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
+                        <img src="../img/image.png" alt="Google" className="w-5 h-5" />
                         Continue with Google
                     </button>
 
