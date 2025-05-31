@@ -1,23 +1,30 @@
 // components/RegisterPopup.jsx
 "use client";
 import React from "react";
+import GoogleRegisButton from "./button/google_register";
 
-// Assuming your modal structure is similar to what was provided earlier
-const RegisterPopup = ({ onClose, onSwitchToLogin }) => { // <<<< Ensure onSwitchToLogin is a prop
+const RegisterPopup = ({ onClose,onSwitchToLogin, onEmailRegister }) => {
+
     return (
-        <div className="fixed inset-0 bg-opacity-40 backdrop-blur-[2px] transition-opacity duration-300 flex justify-center items-center z-50">
-            <div className="flex w-full max-w-5xl min-h-[70vh] bg-white rounded-lg overflow-hidden shadow-lg border-2 transform transition-all duration-500 ease-out opacity-0 scale-95 animate-fadeIn">
+        <div
+            className="fixed inset-0 bg-opacity-40 backdrop-blur-[2px] transition-opacity duration-300 flex justify-center items-center z-50"
+            onClick={onClose} // Add onClick here to close when backdrop is clicked
+        >
+            <div
+                className="flex w-full max-w-5xl min-h-[70vh] bg-white rounded-lg overflow-hidden shadow-lg border-2 transform transition-all duration-500 ease-out opacity-0 scale-95 animate-fadeIn"
+                onClick={(e) => e.stopPropagation()} // Prevent click from bubbling to the backdrop
+            >
                 <div className="relative w-1/2 hidden md:block">
                     <img
-                        src="/home3.png"
+                        src="/home3.png" // Ensure this path is correct, often public assets don't need the leading / but it depends on setup
                         alt="background"
                         className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center px-10">
-                        <h2 className="text-white text-4xl font-bold mb-4">Lorem Ipsum</h2>
-                        <h2 className="text-white text-4xl font-bold mb-4">Lorem Ipsum</h2>
-                        <h2 className="text-white text-4xl font-bold mb-4">Lorem Ipsum’</h2>
-                        <h2 className="text-white text-4xl font-bold">Lorem Ipsu</h2>
+                        {/* Placeholder text, can be updated */}
+                        <h2 className="text-white text-4xl font-bold mb-4">Join Our Community</h2>
+                        <p className="text-white text-xl mb-4">Discover new opportunities and connect with professionals.</p>
+                        <p className="text-white text-xl">Sign up to get started!</p>
                     </div>
                 </div>
 
@@ -37,17 +44,26 @@ const RegisterPopup = ({ onClose, onSwitchToLogin }) => { // <<<< Ensure onSwitc
                         </a>
                     </p>
 
-                    <button className="w-full py-2 mb-3 border flex items-center justify-center gap-2 rounded-md hover:bg-gray-100">
-                        <img src="/google.svg" alt="Google" className="w-5 h-5" />
-                        Continue with Google
-                    </button>
+                    <GoogleRegisButton/>
 
-                    <button className="w-full py-2 mb-3 border flex items-center justify-center gap-2 rounded-md hover:bg-gray-100">
+                    <button
+                        className="w-full py-2 mb-3 border flex items-center justify-center gap-2 rounded-md hover:bg-gray-100"
+                        onClick={() => {
+                            if (onClose) {
+                                onClose();
+                            }
+                            if (onEmailRegister) {
+                                console.log("RegisterPopup: Calling onEmailRegister");
+                                onEmailRegister();
+                            }
+                        }}
+                    >
                         <svg
                             className="w-5 h-5"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
+                            aria-hidden="true"
                         >
                             <path
                                 strokeLinecap="round"

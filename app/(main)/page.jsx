@@ -3,33 +3,63 @@
 import JoinSection from "./components/JoinSection";
 import EventsSection from "./components/EventSection";
 import MisiKami from "./components/Misi";
-import RegisterPopup from "./components/RegisterPopup"; // Renamed for clarity if it's indeed a popup
-import LoginPopup from "./components/LoginPopup";     // Renamed for clarity
+import RegisterPopup from "./components/RegisterPopup"; // Assuming this component exists and works
+import LoginPopup from "./components/LoginPopup";
+import EmailRegisterModal from "./components/EmailRegisterModal";
 import React, { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation'; // Import useRouter
 
 export default function Home() {
   const [activeModal, setActiveModal] = useState(null);
+  const router = useRouter();
 
   const handleOpenLogin = () => setActiveModal('login');
   const handleOpenRegister = () => setActiveModal('register');
-  const handleCloseModal = () => setActiveModal(null);
+  const handleOpenEmail = () => setActiveModal('email');
+
+  const handleCloseModal = () => {
+    setActiveModal(null);
+    console.log("Modal closed");
+  };
 
   const handleSwitchToLogin = () => {
+    console.log("Switching to Login Modal");
     setActiveModal('login'); 
   };
 
   const handleSwitchToRegister = () => {
-    setActiveModal('register'); 
+    console.log("Switching to Register Modal");
+    setActiveModal('register');
+  };
+
+  const handleSwitchToEmail = () => {
+    console.log("Home.js: handleSwitchToEmail CALLED. Current activeModal:", activeModal);
+    setActiveModal('email');
+    console.log("Home.js: activeModal SET to 'email' by handleSwitchToEmail");
+  };
+  
+
+  const handleActualEmailRegister = (formData) => {
+    console.log("Registering with email data:", formData);
+    alert(`Registration attempt for ${formData.email}. Check console for details. (This is a placeholder)`);
+    handleCloseModal();
+    setActiveModal('login'); 
   };
 
   useEffect(() => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
-    if (width < 1280 || height < 720) {
-      router.push('/405');
-    }
-  }, []);
+      if (width < 1280 || height < 720) {
+        router.push('/405'); // Ensure '/405' is a valid route
+      }
+    };
+    checkScreenSize();
+    // If you want this to re-check on window resize:
+    // window.addEventListener('resize', checkScreenSize);
+    // return () => window.removeEventListener('resize', checkScreenSize);
+  }, [router]); // Added router to dependency array
 
   return (
     <div>
@@ -47,11 +77,9 @@ export default function Home() {
             <h1 className="mb-5 text-5xl font-bold">
               Temukan Jasa Berkualitas Untuk Membantumu
             </h1>
-            {/* Updated onClick to open Login Modal */}
             <button className="btn shadow-none m-2" onClick={handleOpenLogin}>
               Cari Jasa
             </button>
-            {/* Updated onClick to open Register Modal */}
             <button className="btn shadow-none m-2" onClick={handleOpenRegister}>
               Daftar Sebagai Freelancer
             </button>
@@ -79,7 +107,7 @@ export default function Home() {
             commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id
             rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
           </p>
-          <button className="btn bg-yellow-400">Learn More</button>
+          <button className="btn bg-yellow-400" >Learn More</button>
         </div>
       </div>
 
@@ -90,11 +118,11 @@ export default function Home() {
         <EventsSection />
       </div>
 
-      {/* Render Modals based on activeModal state */}
       {activeModal === 'register' && (
         <RegisterPopup
           onClose={handleCloseModal}
           onSwitchToLogin={handleSwitchToLogin}
+          onEmailRegister={handleOpenEmail}
         />
       )}
 
@@ -102,6 +130,15 @@ export default function Home() {
         <LoginPopup
           onClose={handleCloseModal}
           onSwitchToRegister={handleSwitchToRegister}
+        />
+      )}
+
+      {activeModal === 'email' && (
+        <EmailRegisterModal
+          isOpen={activeModal === 'email'}
+          onClose={handleCloseModal}
+          onRegister={handleActualEmailRegister}
+          onSwitchToLoginFromEmailForm={handleSwitchToLogin}
         />
       )}
     </div>
