@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { auth, provider, signInWithPopup } from "../../../service/firebase/config"; // Adjust path accordingly
+import { auth, provider, signInWithPopup } from "@/lib/firebase/config"; // Adjust path accordingly
 import { useRouter } from "next/navigation";
 
 const GoogleButtonLogin = () => {
@@ -10,8 +10,8 @@ const GoogleButtonLogin = () => {
         setLoading(true);
         try {
             await signInWithPopup(auth, provider);
-            // Redirect or do something after login
-            router.push("/dashboard"); // Replace with your desired route
+            console.log("Google sign-in successful");
+            router.push("/dashboard");
         } catch (error) {
             console.error("Google sign-in error:", error);
             alert("Failed to sign in with Google.");
@@ -30,7 +30,7 @@ const GoogleButtonLogin = () => {
             {loading ? "Signing in..." : "Continue with Google"}
         </button>
     );
-    
+
 }
 
 
