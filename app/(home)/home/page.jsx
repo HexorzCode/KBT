@@ -2,6 +2,8 @@ import Image from "next/image";
 import Navbar from "../components/Navbar"; // Ensure correct path to Navbar
 
 export default function Home() {
+    
+
     return (
         <div>
             {/* Hero Section */}
@@ -9,7 +11,7 @@ export default function Home() {
                 <div className="container mx-auto flex flex-col items-center justify-center h-full text-white">
                     <h1 className="text-4xl font-bold mb-4">Temukan Jasa Berkualitas Untuk Membantumu</h1>
                     <p className="text-xl mb-8">Dapatkan layanan profesional di berbagai kategori.</p>
-                    <form className="flex justify-center">
+                    <form className="flex justify-center border border-gray-300 rounded-lg overflow-hidden">
                         <input
                             type="text"
                             placeholder="Cari Jasa"

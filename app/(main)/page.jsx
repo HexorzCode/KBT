@@ -17,12 +17,6 @@ export default function Home() {
   const handleOpenRegister = () => setActiveModal('register');
   const handleOpenEmail = () => setActiveModal('email');
 
-/*************  ✨ Windsurf Command ⭐  *************/
-/**
- * Closes the currently active modal by setting the active modal state to null.
- * Logs a message indicating that the modal has been closed.
- */
-
 /*******  3021ae9d-9ffc-4f1b-8a07-6dd5bf59ffb5  *******/  const handleCloseModal = () => {
     setActiveModal(null);
     console.log("Modal closed");
