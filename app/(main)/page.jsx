@@ -32,13 +32,6 @@ export default function Home() {
     setActiveModal('register');
   };
 
-  const handleSwitchToEmail = () => {
-    console.log("Home.js: handleSwitchToEmail CALLED. Current activeModal:", activeModal);
-    setActiveModal('email');
-    console.log("Home.js: activeModal SET to 'email' by handleSwitchToEmail");
-  };
-  
-
   const handleActualEmailRegister = (formData) => {
     console.log("Registering with email data:", formData);
     alert(`Registration attempt for ${formData.email}. Check console for details. (This is a placeholder)`);
