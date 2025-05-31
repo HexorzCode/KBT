@@ -8,7 +8,7 @@ import LoginPopup from './LoginPopup';     // Import your Login modal component
 export default function Navbar() {
     const [activeModal, setActiveModal] = useState(null);
 
-    const handleOpenLogin = () => setActiveModal('login'); // Added for completeness if you need to open Login directly
+    const handleOpenLogin = () => setActiveModal('login');
     const handleOpenRegister = () => setActiveModal('register');
     const handleCloseModal = () => setActiveModal(null);
 

@@ -1,13 +1,21 @@
 // components/LoginPopup.jsx
 "use client";
 import React from "react";
-const LoginPopup = ({ onClose, onSwitchToRegister }) => { // <<<< Ensure onSwitchToRegister is a prop
+import GoogleButtonLogin from "./button/google_login";
+
+const LoginPopup = ({ onClose, onSwitchToRegister }) => {
     return (
-        <div className="fixed inset-0 bg-opacity-40 backdrop-blur-[2px] transition-opacity duration-300 flex justify-center items-center z-50">
-            <div className="flex w-full max-w-5xl min-h-[70vh] bg-white rounded-lg overflow-hidden shadow-lg border-2 transform transition-all duration-500 ease-out opacity-0 scale-95 animate-fadeIn">
+        <div
+            className="fixed inset-0 bg-opacity-40 backdrop-blur-[2px] transition-opacity duration-300 flex justify-center items-center z-50"
+            onClick={onClose} // Add onClick here to close when backdrop is clicked
+        >
+            <div
+                className="flex w-full max-w-5xl min-h-[70vh] bg-white rounded-lg overflow-hidden shadow-lg border-2 transform transition-all duration-500 ease-out opacity-0 scale-95 animate-fadeIn"
+                onClick={(e) => e.stopPropagation()} // Prevent click from bubbling to the backdrop
+            >
                 <div className="relative w-1/2 hidden md:block">
                     <img
-                        src="home3.png" 
+                        src="home3.png"
                         alt="background"
                         className="w-full h-full object-cover"
                     />
@@ -25,18 +33,14 @@ const LoginPopup = ({ onClose, onSwitchToRegister }) => { // <<<< Ensure onSwitc
                         <a
                             className="text-black font-semibold hover:underline hover:cursor-pointer"
                             onClick={() => {
-                                if (onClose) onClose(); // Close this modal
-                                if (onSwitchToRegister) onSwitchToRegister(); // Then trigger opening the register modal
+                                if (onSwitchToRegister) onSwitchToRegister();
                             }}
                         >
                             Sign Up
                         </a>
                     </p>
 
-                    <button className="w-full py-2 mb-3 border flex items-center justify-center gap-2 rounded-md hover:bg-gray-100">
-                        <img src="/google.svg" alt="Google" className="w-5 h-5" />
-                        Continue with Google
-                    </button>
+                    <GoogleButtonLogin />
 
                     <div className="flex items-center my-6">
                         <hr className="flex-grow border-t border-gray-300" />
