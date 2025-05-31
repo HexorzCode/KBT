@@ -1,56 +1,92 @@
+// components/LoginPopup.jsx
 "use client";
 import React from "react";
+import GoogleButtonLogin from "./button/google_login";
 
-
-const LoginPopup = ( {onClose} ) => {
+const LoginPopup = ({ onClose, onSwitchToRegister }) => {
     return (
-        <div className="fixed inset-0  bg-opacity-40 backdrop-blur-[2px] transition-opacity duration-300 flex justify-center items-center z-50">
-            <div className="flex w-full max-w-5xl min-h-[70vh] bg-white rounded-lg overflow-hidden shadow-lg border-2 transform transition-all duration-500 ease-out opacity-0 scale-95 animate-fadeIn">
+        <div
+            className="fixed inset-0 bg-opacity-40 backdrop-blur-[2px] transition-opacity duration-300 flex justify-center items-center z-50"
+            onClick={onClose} // Add onClick here to close when backdrop is clicked
+        >
+            <div
+                className="flex w-full max-w-5xl min-h-[70vh] bg-white rounded-lg overflow-hidden shadow-lg border-2 transform transition-all duration-500 ease-out opacity-0 scale-95 animate-fadeIn"
+                onClick={(e) => e.stopPropagation()} // Prevent click from bubbling to the backdrop
+            >
                 <div className="relative w-1/2 hidden md:block">
                     <img
-                        src="/your-image.jpg"
+                        src="home3.png"
                         alt="background"
                         className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center px-10">
-                        <h2 className="text-white text-4xl font-bold mb-4">Lorem Ipsum</h2>
-                        <h2 className="text-white text-4xl font-bold mb-4">Lorem Ipsum</h2>
-                        <h2 className="text-white text-4xl font-bold mb-4">Lorem Ipsum’</h2>
-                        <h2 className="text-white text-4xl font-bold">Lorem Ipsu</h2>
+                        <h2 className="text-white text-4xl font-bold mb-4">Welcome Back!</h2>
+                        <p className="text-white text-xl">Login to continue.</p>
                     </div>
                 </div>
 
-                <div className="w-full md:w-1/2 p-10 flex flex-col justify-center h-max">
+                <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
                     <button className="self-end text-xl mb-4 hover:cursor-pointer" onClick={onClose}>✕</button>
-                    <h2 className="text-2xl font-bold mb-1">Buat Akun Baru</h2>
+                    <h2 className="text-2xl font-bold mb-1">Login</h2>
                     <p className="mb-4 text-gray-600">
-                        Sudah memiliki Akun?{" "}
-                        <a href="#" className="text-black font-semibold">
-                            Sign In
+                        Don't have an account?{" "}
+                        <a
+                            className="text-black font-semibold hover:underline hover:cursor-pointer"
+                            onClick={() => {
+                                if (onSwitchToRegister) onSwitchToRegister();
+                            }}
+                        >
+                            Sign Up
                         </a>
                     </p>
 
-                    <button className="w-full py-2 mb-3 border flex items-center justify-center gap-2 rounded-md hover:bg-gray-100">
-                        <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
-                        Continue with Google
-                    </button>
+                    <GoogleButtonLogin />
 
-                    <button className="w-full py-2 mb-3 border flex items-center justify-center gap-2 rounded-md hover:bg-gray-100">
-                        <svg
-                            className="w-5 h-5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M16 12H8m0 0l4-4m-4 4l4 4"
+                    <div className="flex items-center my-6">
+                        <hr className="flex-grow border-t border-gray-300" />
+                        <span className="mx-4 text-gray-500 text-xs uppercase">Or login with email</span>
+                        <hr className="flex-grow border-t border-gray-300" />
+                    </div>
+
+                    <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+                        <div>
+                            <label htmlFor="email-login" className="sr-only">Email address</label>
+                            <input
+                                id="email-login"
+                                name="email"
+                                type="email"
+                                autoComplete="email"
+                                required
+                                className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                placeholder="Email address"
                             />
-                        </svg>
-                        Continue with email
-                    </button>
+                        </div>
+                        <div>
+                            <label htmlFor="password-login" className="sr-only">Password</label>
+                            <input
+                                id="password-login"
+                                name="password"
+                                type="password"
+                                autoComplete="current-password"
+                                required
+                                className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                placeholder="Password"
+                            />
+                        </div>
+                        <div className="flex items-center justify-end">
+                            <div className="text-sm">
+                                <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
+                                    Forgot your password?
+                                </a>
+                            </div>
+                        </div>
+                        <button
+                            type="submit"
+                            className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        >
+                            Login
+                        </button>
+                    </form>
 
                     <div className="flex items-center my-4">
                         <hr className="flex-grow border-t" />
@@ -59,10 +95,12 @@ const LoginPopup = ( {onClose} ) => {
                     </div>
 
                     <div className="flex gap-3">
-                        <button className="w-full py-2 border rounded-md hover:bg-gray-100">
+                        <button className="w-full py-2 border rounded-md hover:bg-gray-100 flex items-center justify-center gap-2">
+                            <img src="/apple.svg" alt="Apple" className="w-5 h-5" />
                             Apple
                         </button>
-                        <button className="w-full py-2 border rounded-md hover:bg-gray-100">
+                        <button className="w-full py-2 border rounded-md hover:bg-gray-100 flex items-center justify-center gap-2">
+                            <img src="/facebook.svg" alt="Facebook" className="w-5 h-5" />
                             Facebook
                         </button>
                     </div>

@@ -3,14 +3,27 @@
 import JoinSection from "./components/JoinSection";
 import EventsSection from "./components/EventSection";
 import MisiKami from "./components/Misi";
+import RegisterPopup from "./components/RegisterPopup"; // Assuming this component exists and works
 import LoginPopup from "./components/LoginPopup";
+import EmailRegisterModal from "./components/EmailRegisterModal";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation'; // Import useRouter
 
 export default function Home() {
+  const [showLogin, setShowLogin] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    if (width < 1280 || height < 720) {
+      router.push('/405');
+    }
+  }, []);
+
   return (
     <div>
-
       <div
         className="hero min-h-[91vh]"
         style={{
@@ -25,8 +38,10 @@ export default function Home() {
             <h1 className="mb-5 text-5xl font-bold">
               Temukan Jasa Berkualitas Untuk Membantumu
             </h1>
-            <button className="btn shadow-none m-2" onClick={() => setShowLogin(true)}>Cari Jasa</button>
-            <button className="btn shadow-none m-2">
+            <button className="btn shadow-none m-2" onClick={handleOpenLogin}>
+              Cari Jasa
+            </button>
+            <button className="btn shadow-none m-2" onClick={handleOpenRegister}>
               Daftar Sebagai Freelancer
             </button>
           </div>
@@ -53,19 +68,40 @@ export default function Home() {
             commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id
             rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
           </p>
-          <button className="btn bg-yellow-400">Learn More</button>
+          <button className="btn bg-yellow-400" >Learn More</button>
         </div>
       </div>
 
       <MisiKami />
-      
+
       <div>
         <JoinSection />
         <EventsSection />
       </div>
-      {showLogin && <LoginPopup onClose={() => setShowLogin(false)}/>}
 
+      {activeModal === 'register' && (
+        <RegisterPopup
+          onClose={handleCloseModal}
+          onSwitchToLogin={handleSwitchToLogin}
+          onEmailRegister={handleOpenEmail}
+        />
+      )}
+
+      {activeModal === 'login' && (
+        <LoginPopup
+          onClose={handleCloseModal}
+          onSwitchToRegister={handleSwitchToRegister}
+        />
+      )}
+
+      {activeModal === 'email' && (
+        <EmailRegisterModal
+          isOpen={activeModal === 'email'}
+          onClose={handleCloseModal}
+          onRegister={handleActualEmailRegister}
+          onSwitchToLoginFromEmailForm={handleSwitchToLogin}
+        />
+      )}
     </div>
-    
   );
 }
