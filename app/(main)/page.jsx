@@ -13,6 +13,32 @@ export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
   const router = useRouter();
 
+  const handleOpenLogin = () => setActiveModal('login');
+  const handleOpenRegister = () => setActiveModal('register');
+  const handleOpenEmail = () => setActiveModal('email');
+
+  const handleCloseModal = () => {
+    setActiveModal(null);
+    console.log("Modal closed");
+  };
+
+  const handleSwitchToLogin = () => {
+    console.log("Switching to Login Modal");
+    setActiveModal('login'); 
+  };
+
+  const handleSwitchToRegister = () => {
+    console.log("Switching to Register Modal");
+    setActiveModal('register');
+  };
+
+  const handleActualEmailRegister = (formData) => {
+    console.log("Registering with email data:", formData);
+    alert(`Registration attempt for ${formData.email}. Check console for details. (This is a placeholder)`);
+    handleCloseModal();
+    setActiveModal('login'); 
+  };
+
   useEffect(() => {
     const width = window.innerWidth;
     const height = window.innerHeight;
