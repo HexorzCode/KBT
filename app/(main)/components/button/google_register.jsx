@@ -1,6 +1,8 @@
 "use client";
 
-import { auth, provider, signInWithPopup } from "../../../service/firebase/config"; // Adjust path if needed
+import { auth, provider, signInWithPopup, db } from "@/lib/firebase/config";
+import { setDoc } from "firebase/firestore";
+import { doc } from "firebase/firestore";
 
 
 const GoogleRegisButton = () => {
@@ -9,11 +11,14 @@ const GoogleRegisButton = () => {
         try {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
-            console.log("Google Sign-In successful:", user);
+            console.log(`Signed in with Google: ${user.displayName} (${user.email}) - UID: ${user.uid}`);
+            
             // You can handle the user data here, e.g., save to your database
+            const userref = doc(db, "users", user.uid);
+            await setDoc(userref, {username: user.displayName, email: user.email, seller: false});
+            console.log("User data saved to Firestore:", user.displayName);
         } catch (error) {
             console.error("Error during Google Sign-In:", error);
-            // Handle errors here, e.g., show a notification
         }
     }
 
