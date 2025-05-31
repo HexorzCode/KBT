@@ -10,21 +10,27 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation'; // Import useRouter
 
 export default function Home() {
-  const [showLogin, setShowLogin] = useState(false);
+  const [activeModal, setActiveModal] = useState(null);
   const router = useRouter();
 
   const handleOpenLogin = () => setActiveModal('login');
   const handleOpenRegister = () => setActiveModal('register');
   const handleOpenEmail = () => setActiveModal('email');
 
-  const handleCloseModal = () => {
+/*************  ✨ Windsurf Command ⭐  *************/
+/**
+ * Closes the currently active modal by setting the active modal state to null.
+ * Logs a message indicating that the modal has been closed.
+ */
+
+/*******  3021ae9d-9ffc-4f1b-8a07-6dd5bf59ffb5  *******/  const handleCloseModal = () => {
     setActiveModal(null);
     console.log("Modal closed");
   };
 
   const handleSwitchToLogin = () => {
     console.log("Switching to Login Modal");
-    setActiveModal('login'); 
+    setActiveModal('login');
   };
 
   const handleSwitchToRegister = () => {
@@ -32,21 +38,34 @@ export default function Home() {
     setActiveModal('register');
   };
 
+  const handleSwitchToEmail = () => {
+    console.log("Home.js: handleSwitchToEmail CALLED. Current activeModal:", activeModal);
+    setActiveModal('email');
+    console.log("Home.js: activeModal SET to 'email' by handleSwitchToEmail");
+  };
+
+
   const handleActualEmailRegister = (formData) => {
     console.log("Registering with email data:", formData);
     alert(`Registration attempt for ${formData.email}. Check console for details. (This is a placeholder)`);
     handleCloseModal();
-    setActiveModal('login'); 
+    setActiveModal('login');
   };
 
   useEffect(() => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
-    if (width < 1280 || height < 720) {
-      router.push('/405');
-    }
-  }, []);
+      if (width < 1280 || height < 720) {
+        router.push('/405'); // Ensure '/405' is a valid route
+      }
+    };
+    checkScreenSize();
+    // If you want this to re-check on window resize:
+    // window.addEventListener('resize', checkScreenSize);
+    // return () => window.removeEventListener('resize', checkScreenSize);
+  }, [router]); // Added router to dependency array
 
   return (
     <div>
