@@ -99,13 +99,9 @@ export default function Home() {
             Kami Menyediakan Platform & Jasa untuk Membantumu dan Berkembang
           </h1>
           <p className="text-lg text-gray-700 mb-10">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            varius enim in eros elementum tristique.
-          </p>
-          <p className="text-lg text-gray-700 mb-15">
-            Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
-            commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id
-            rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
+            Wivern hadir sebagai platform edukatif yang memudahkan siswa dan mahasiswa dalam menyelesaikan tugas akademik secara cepat, efisien, dan bertanggung jawab. Melalui sistem otomatis yang menghubungkan pengguna dengan freelancer, kami tidak hanya memberikan bantuan akademik, tetapi juga membuka peluang produktif bagi para pelajar untuk berkembang sebagai freelancer yang profesional.
+
+            Dengan pendekatan yang fleksibel, kami bertujuan meningkatkan produktivitas pelajar, memperluas kesempatan freelance, dan membangun ekosistem belajar yang kolaboratif dan saling mendukung.
           </p>
           <button className="btn bg-yellow-400" >Learn More</button>
         </div>

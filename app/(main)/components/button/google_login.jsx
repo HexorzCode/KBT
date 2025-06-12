@@ -1,17 +1,21 @@
 import { useState } from "react";
 import { auth, provider, signInWithPopup } from "@/lib/firebase/config"; // Adjust path accordingly
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const GoogleButtonLogin = () => {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+
+    const [user, setUser] = useState(null);
 
     const handleGoogleLogin = async () => {
         setLoading(true);
         try {
             await signInWithPopup(auth, provider);
             console.log("Google sign-in successful");
-            redirect("/home");
+            router.push("/home");
+            setUser(auth.currentUser);
+            console.log("User signed in:", auth.currentUser);
         } catch (error) {
             console.error("Google sign-in error:", error);
             alert("Failed to sign in with Google.");

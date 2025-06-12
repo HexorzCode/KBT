@@ -4,6 +4,7 @@ export default function Navbar() {
     
     const user = "John Doe"; // This should be replaced with actual user data from your authentication system
     return (
+        
         <div className="navbar bg-base-100 shadow-sm">
             <div className="flex-1">
                 <a className="btn btn-ghost text-xl">Wivern</a>
