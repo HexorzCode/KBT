@@ -6,12 +6,16 @@ const GoogleButtonLogin = () => {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
+    const [user, setUser] = useState(null);
+
     const handleGoogleLogin = async () => {
         setLoading(true);
         try {
             await signInWithPopup(auth, provider);
             console.log("Google sign-in successful");
-            router.push("/dashboard");
+            router.push("/home");
+            setUser(auth.currentUser);
+            console.log("User signed in:", auth.currentUser);
         } catch (error) {
             console.error("Google sign-in error:", error);
             alert("Failed to sign in with Google.");
